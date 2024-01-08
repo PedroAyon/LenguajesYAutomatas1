@@ -1,0 +1,21 @@
+<component name="libraryTable">
+  <library name="de.jflex.maven.plugin" type="repository">
+    <properties maven-id="de.jflex:jflex-maven-plugin:1.9.1" />
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/de/jflex/jflex-maven-plugin/1.9.1/jflex-maven-plugin-1.9.1.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/google/code/findbugs/jsr305/3.0.2/jsr305-3.0.2.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/google/guava/guava/31.1-jre/guava-31.1-jre.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/google/guava/failureaccess/1.0.1/failureaccess-1.0.1.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/google/guava/listenablefuture/9999.0-empty-to-avoid-conflict-with-guava/listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/checkerframework/checker-qual/3.12.0/checker-qual-3.12.0.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/google/errorprone/error_prone_annotations/2.11.0/error_prone_annotations-2.11.0.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/google/j2objc/j2objc-annotations/1.3/j2objc-annotations-1.3.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/de/jflex/jflex/1.9.1/jflex-1.9.1.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/github/vbmacher/java-cup-runtime/11b-20160615-1/java-cup-runtime-11b-20160615-1.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/apache/ant/ant/1.10.13/ant-1.10.13.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/apache/ant/ant-launcher/1.10.13/ant-launcher-1.10.13.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

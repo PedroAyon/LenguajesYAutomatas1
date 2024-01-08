@@ -1,0 +1,93 @@
+import java_cup.runtime.*;
+
+parser code
+{:
+    private Symbol s;
+
+    public void syntax_error(Symbol s){
+        System.out.println("compiler has detected a syntax error at line " + s.left + " column " + s.right);
+    }
+
+    public Symbol getS(){
+        return this.s;
+}
+:};
+
+
+terminal STRING_LITERAL, INTEGER_LITERAL, DECIMAL_LITERAL, SEMICOLON, COLON, COMMA, DOT, OBRACKET, CBRACKET,
+         OPARENTHESIS, CPARENTHESIS, MUL, POW, SUM, SUB, DIV, INT_DIV, MOD, INC, DEC, AND, NOT, OR,
+         LESS_THAN, MORE_THAN, LESS_OR_EQ, MORE_OR_EQ, EQUALS, DIFFERENT_THAN, ASSIGNMENT,
+         DATA_TYPE, FOR, WHILE, IF, ELSE, FUNCTION, RETURN, IMPORT, IDENTIFIER, BOOL;
+
+non terminal Program, Start, RelationalOp, LogicOp, AritmethicOp, IncDec, Declaration, IncDecOperation, ID_NUM, AritExp, MoreAritExp,
+            FunctionDeclaration, BoolExp, MoreBoolExp, Value, ID_Value, Assignment, Expression, Parameter, ParameterList, Statement,
+            Structure, Components, Body, MoreBody, IfSt, IfElseSt, ForSt, WhileSt, DeclaAssig, LibraryImport, ArgumentList, FunctionCall, ReturnStatement, MasFunciones;
+
+precedence left IMPORT;
+
+start with Program;
+
+Start ::= Program;
+
+Program ::= LibraryImport FunctionDeclaration | FunctionDeclaration;
+
+RelationalOp ::= LESS_THAN | MORE_THAN | LESS_OR_EQ | MORE_OR_EQ | EQUALS | DIFFERENT_THAN;
+LogicOp ::= AND|OR;
+AritmethicOp ::= MUL|POW|SUM|SUB|DIV|INT_DIV|MOD;
+IncDec ::= INC|DEC;
+
+ID_NUM ::= IDENTIFIER | INTEGER_LITERAL | DECIMAL_LITERAL;
+IncDecOperation ::= ID_NUM IncDec;
+AritExp ::= ID_NUM AritmethicOp ID_NUM MoreAritExp | ID_NUM;
+MoreAritExp ::= AritmethicOp ID_NUM MoreAritExp | /* empty */;
+
+BoolExp ::= AritExp LogicOp AritExp MoreBoolExp | BOOL | AritExp RelationalOp AritExp MoreBoolExp;
+MoreBoolExp ::= LogicOp AritExp MoreBoolExp | RelationalOp AritExp MoreBoolExp | /* empty */;
+
+Value ::= STRING_LITERAL | AritExp;
+
+Assignment ::= IDENTIFIER ASSIGNMENT Value SEMICOLON;
+
+ParameterList ::= Parameter
+               | ParameterList COMMA Parameter;
+
+Parameter ::= DATA_TYPE IDENTIFIER;
+
+Declaration ::= DATA_TYPE IDENTIFIER SEMICOLON | DATA_TYPE IDENTIFIER ASSIGNMENT Value SEMICOLON;
+
+Statement ::= Declaration | Assignment | FunctionCall | LibraryImport | IncDecOperation SEMICOLON;
+
+Structure ::= IfSt | IfElseSt | ForSt | WhileSt;
+
+Components ::= Statement | Structure;
+
+ReturnStatement ::= RETURN Value SEMICOLON
+                | RETURN SEMICOLON;
+
+Body ::= OBRACKET Components MoreBody CBRACKET | OBRACKET Components MoreBody ReturnStatement CBRACKET;
+
+MoreBody ::= Components MoreBody | /* empty */;
+
+IfSt ::= IF OPARENTHESIS BoolExp CPARENTHESIS Body;
+
+IfElseSt ::= IF OPARENTHESIS BoolExp CPARENTHESIS Body ELSE Body;
+
+DeclaAssig ::= DATA_TYPE IDENTIFIER ASSIGNMENT Value;
+
+ForSt ::= FOR OPARENTHESIS DeclaAssig SEMICOLON BoolExp SEMICOLON AritExp CPARENTHESIS Body
+            | FOR OPARENTHESIS DeclaAssig SEMICOLON BoolExp SEMICOLON IncDecOperation CPARENTHESIS Body;
+
+WhileSt ::= WHILE OPARENTHESIS BoolExp CPARENTHESIS Body;
+
+FunctionDeclaration ::= FunctionDeclaration  FUNCTION IDENTIFIER OPARENTHESIS ParameterList CPARENTHESIS Body | FUNCTION IDENTIFIER OPARENTHESIS ParameterList CPARENTHESIS Body
+                        | FunctionDeclaration FUNCTION IDENTIFIER OPARENTHESIS CPARENTHESIS Body | FUNCTION IDENTIFIER OPARENTHESIS CPARENTHESIS Body;
+
+LibraryImport ::= LibraryImport IMPORT STRING_LITERAL SEMICOLON
+               | IMPORT STRING_LITERAL SEMICOLON;
+
+ArgumentList ::= Value | ArgumentList COMMA Value;
+
+FunctionCall ::= IDENTIFIER OPARENTHESIS ArgumentList CPARENTHESIS SEMICOLON
+             | IDENTIFIER OPARENTHESIS CPARENTHESIS SEMICOLON;
+
+
