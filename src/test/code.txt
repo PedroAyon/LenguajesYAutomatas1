@@ -1,14 +1,17 @@
 import "hola";
 import "math";
 
-fn main(){
+fn int main(){
     int a;
+    int b = 2;
     a = 3 + 1;
-    x = "hola";
+    string x = "hola";
+
     print(a);
-    if (a and b) {
+    if (a < b) {
         print(x);
     }
+
     int i = 0;
     i++;
     for (int i = 0; i and x; i++) {
@@ -22,15 +25,13 @@ fn main(){
         }
         print(x);
     }
-
-
     return a;
 }
 
 
-fn hola(){
-    int a = 4 + 2;
-    a = 10 + 1;
-    return a;
+fn int _suma(){
+    int A = 4 + 2;
+    int b = 10 + 1;
+    return A + b;
 }
 

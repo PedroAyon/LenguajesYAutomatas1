@@ -6,47 +6,45 @@
 /** CUP generated class containing symbol constants. */
 public class sym {
   /* terminals */
-  public static final int POW = 14;
-  public static final int FUNCTION = 37;
+  public static final int POW = 12;
+  public static final int FUNCTION = 35;
   public static final int STRING_LITERAL = 2;
-  public static final int ASSIGNMENT = 31;
-  public static final int EQUALS = 29;
-  public static final int DATA_TYPE = 32;
-  public static final int OPARENTHESIS = 11;
-  public static final int FOR = 33;
-  public static final int OBRACKET = 9;
-  public static final int NOT = 23;
+  public static final int ASSIGNMENT = 29;
+  public static final int EQUALS = 27;
+  public static final int DATA_TYPE = 30;
+  public static final int OPARENTHESIS = 9;
+  public static final int FOR = 31;
+  public static final int OBRACKET = 7;
+  public static final int NOT = 21;
   public static final int SEMICOLON = 5;
-  public static final int AND = 22;
-  public static final int CBRACKET = 10;
-  public static final int OR = 24;
-  public static final int BOOL = 41;
-  public static final int DIFFERENT_THAN = 30;
-  public static final int COMMA = 7;
-  public static final int INC = 20;
-  public static final int DIV = 17;
-  public static final int IF = 35;
-  public static final int DOT = 8;
+  public static final int AND = 20;
+  public static final int CBRACKET = 8;
+  public static final int OR = 22;
+  public static final int BOOL = 39;
+  public static final int DIFFERENT_THAN = 28;
+  public static final int COMMA = 6;
+  public static final int INC = 18;
+  public static final int DIV = 15;
+  public static final int IF = 33;
   public static final int EOF = 0;
-  public static final int RETURN = 38;
+  public static final int RETURN = 36;
   public static final int error = 1;
-  public static final int MUL = 13;
-  public static final int LESS_OR_EQ = 27;
-  public static final int MOD = 19;
-  public static final int IMPORT = 39;
-  public static final int COLON = 6;
-  public static final int ELSE = 36;
-  public static final int CPARENTHESIS = 12;
-  public static final int WHILE = 34;
+  public static final int MUL = 11;
+  public static final int LESS_OR_EQ = 25;
+  public static final int MOD = 17;
+  public static final int IMPORT = 37;
+  public static final int ELSE = 34;
+  public static final int CPARENTHESIS = 10;
+  public static final int WHILE = 32;
   public static final int DECIMAL_LITERAL = 4;
-  public static final int SUM = 15;
-  public static final int INT_DIV = 18;
-  public static final int DEC = 21;
-  public static final int MORE_OR_EQ = 28;
-  public static final int MORE_THAN = 26;
-  public static final int LESS_THAN = 25;
-  public static final int SUB = 16;
-  public static final int IDENTIFIER = 40;
+  public static final int SUM = 13;
+  public static final int INT_DIV = 16;
+  public static final int DEC = 19;
+  public static final int MORE_OR_EQ = 26;
+  public static final int MORE_THAN = 24;
+  public static final int LESS_THAN = 23;
+  public static final int SUB = 14;
+  public static final int IDENTIFIER = 38;
   public static final int INTEGER_LITERAL = 3;
   public static final String[] terminalNames = new String[] {
   "EOF",
@@ -55,9 +53,7 @@ public class sym {
   "INTEGER_LITERAL",
   "DECIMAL_LITERAL",
   "SEMICOLON",
-  "COLON",
   "COMMA",
-  "DOT",
   "OBRACKET",
   "CBRACKET",
   "OPARENTHESIS",

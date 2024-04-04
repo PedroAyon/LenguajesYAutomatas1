@@ -14,22 +14,20 @@ parser code
 :};
 
 
-terminal STRING_LITERAL, INTEGER_LITERAL, DECIMAL_LITERAL, SEMICOLON, COLON, COMMA, DOT, OBRACKET, CBRACKET,
+terminal STRING_LITERAL, INTEGER_LITERAL, DECIMAL_LITERAL, SEMICOLON, COMMA, OBRACKET, CBRACKET,
          OPARENTHESIS, CPARENTHESIS, MUL, POW, SUM, SUB, DIV, INT_DIV, MOD, INC, DEC, AND, NOT, OR,
          LESS_THAN, MORE_THAN, LESS_OR_EQ, MORE_OR_EQ, EQUALS, DIFFERENT_THAN, ASSIGNMENT,
          DATA_TYPE, FOR, WHILE, IF, ELSE, FUNCTION, RETURN, IMPORT, IDENTIFIER, BOOL;
 
-non terminal Program, Start, RelationalOp, LogicOp, AritmethicOp, IncDec, Declaration, IncDecOperation, ID_NUM, AritExp, MoreAritExp,
-            FunctionDeclaration, BoolExp, MoreBoolExp, Value, ID_Value, Assignment, Expression, Parameter, ParameterList, Statement,
-            Structure, Components, Body, MoreBody, IfSt, IfElseSt, ForSt, WhileSt, DeclaAssig, LibraryImport, ArgumentList, FunctionCall, ReturnStatement, MasFunciones;
+non terminal Program, RelationalOp, LogicOp, AritmethicOp, IncDec, Declaration, IncDecOperation, ID_NUM, AritExp, MoreAritExp,
+            FunctionDeclaration, BoolExp, MoreBoolExp, Value, Assignment, Parameter, ParameterList, Statement,
+            Structure, Components, Body, MoreBody, IfSt, IfElseSt, ForSt, WhileSt, DeclaAssig, LibraryImport, ArgumentList, FunctionCall, ReturnStatement;
 
 precedence left IMPORT;
 
 start with Program;
 
-Start ::= Program;
-
-Program ::= LibraryImport FunctionDeclaration | FunctionDeclaration;
+Program ::= LibraryImport Program | FunctionDeclaration Program | /* empty */;
 
 RelationalOp ::= LESS_THAN | MORE_THAN | LESS_OR_EQ | MORE_OR_EQ | EQUALS | DIFFERENT_THAN;
 LogicOp ::= AND|OR;
@@ -41,7 +39,7 @@ IncDecOperation ::= ID_NUM IncDec;
 AritExp ::= ID_NUM AritmethicOp ID_NUM MoreAritExp | ID_NUM;
 MoreAritExp ::= AritmethicOp ID_NUM MoreAritExp | /* empty */;
 
-BoolExp ::= AritExp LogicOp AritExp MoreBoolExp | BOOL | AritExp RelationalOp AritExp MoreBoolExp;
+BoolExp ::= AritExp LogicOp AritExp MoreBoolExp | BOOL | AritExp RelationalOp AritExp MoreBoolExp | NOT BoolExp | OPARENTHESIS BoolExp CPARENTHESIS;
 MoreBoolExp ::= LogicOp AritExp MoreBoolExp | RelationalOp AritExp MoreBoolExp | /* empty */;
 
 Value ::= STRING_LITERAL | AritExp;
@@ -79,11 +77,10 @@ ForSt ::= FOR OPARENTHESIS DeclaAssig SEMICOLON BoolExp SEMICOLON AritExp CPAREN
 
 WhileSt ::= WHILE OPARENTHESIS BoolExp CPARENTHESIS Body;
 
-FunctionDeclaration ::= FunctionDeclaration  FUNCTION IDENTIFIER OPARENTHESIS ParameterList CPARENTHESIS Body | FUNCTION IDENTIFIER OPARENTHESIS ParameterList CPARENTHESIS Body
-                        | FunctionDeclaration FUNCTION IDENTIFIER OPARENTHESIS CPARENTHESIS Body | FUNCTION IDENTIFIER OPARENTHESIS CPARENTHESIS Body;
+FunctionDeclaration ::= FUNCTION DATA_TYPE IDENTIFIER OPARENTHESIS ParameterList CPARENTHESIS Body
+                        | FUNCTION DATA_TYPE IDENTIFIER OPARENTHESIS CPARENTHESIS Body;
 
-LibraryImport ::= LibraryImport IMPORT STRING_LITERAL SEMICOLON
-               | IMPORT STRING_LITERAL SEMICOLON;
+LibraryImport ::= IMPORT STRING_LITERAL SEMICOLON;
 
 ArgumentList ::= Value | ArgumentList COMMA Value;
 
